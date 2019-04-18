@@ -112,7 +112,7 @@ public class UserFragment extends Fragment {
                                 Post post = queryDocumentSnapshots.getDocuments().get(0).toObject(Post.class);
                                 PostFragment fragment = new PostFragment();
                                 fragment.setPost(post);
-                                getFragmentManager().beginTransaction().replace(R.id.fragments_container,fragment).commit();
+                                getFragmentManager().beginTransaction().replace(R.id.fragments_container,fragment).addToBackStack(null).commit();
                             }
                         });
                     }catch (Exception e){

@@ -46,6 +46,8 @@ public class PostFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_post,container,false);
 
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         final String uid = firebaseAuth.getCurrentUser().getUid();
         firestore = FirebaseFirestore.getInstance();

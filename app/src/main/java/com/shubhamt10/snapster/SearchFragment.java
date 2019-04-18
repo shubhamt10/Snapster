@@ -110,7 +110,8 @@ public class SearchFragment extends Fragment {
                                             userFragment.setUser(user);
                                             System.out.println(user);
                                             try {
-                                                getFragmentManager().beginTransaction().replace(R.id.fragments_container,userFragment).commit();
+                                                getFragmentManager().beginTransaction()
+                                                        .replace(R.id.fragments_container,userFragment).addToBackStack(null).commit();
                                             }catch (Exception e){
                                                 System.out.println(e.getMessage());
                                             }

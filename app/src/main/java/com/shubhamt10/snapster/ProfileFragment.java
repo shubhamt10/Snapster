@@ -19,8 +19,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-
 public class ProfileFragment extends Fragment {
 
     private User user;
@@ -92,7 +90,7 @@ public class ProfileFragment extends Fragment {
                                 Post post = queryDocumentSnapshots.getDocuments().get(0).toObject(Post.class);
                                 PostFragment fragment = new PostFragment();
                                 fragment.setPost(post);
-                                getFragmentManager().beginTransaction().replace(R.id.fragments_container,fragment).commit();
+                                getFragmentManager().beginTransaction().replace(R.id.fragments_container,fragment).addToBackStack(null).commit();
                             }
                         });
                     }catch (Exception e){
@@ -110,7 +108,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 EditFragment fragment = new EditFragment();
                 fragment.setUser(user);
-                getFragmentManager().beginTransaction().replace(R.id.fragments_container,fragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragments_container,fragment).addToBackStack(null).commit();
             }
         });
 
