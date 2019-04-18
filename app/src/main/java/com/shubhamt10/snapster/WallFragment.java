@@ -36,7 +36,6 @@ public class WallFragment extends Fragment {
     private DocumentReference reference;
     private Post post;
     private boolean isLiked;
-    private PostRecycleViewAdapter.RecyclerViewClickListener clickListener;
     private PostRecycleViewAdapter adapter;
 
     @Nullable
@@ -51,10 +50,6 @@ public class WallFragment extends Fragment {
         firestore = FirebaseFirestore.getInstance();
         postsReference = firestore.collection("posts");
 
-        adapter = new PostRecycleViewAdapter(getContext(), posts, clickListener);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
-
         final String uid = firebaseAuth.getCurrentUser().getUid();
 
         if (posts != null) {
@@ -63,7 +58,7 @@ public class WallFragment extends Fragment {
                 for (Post post: posts){
                     postUrls.add(post.getUrl());
                 }
-                clickListener = new PostRecycleViewAdapter.RecyclerViewClickListener() {
+                PostRecycleViewAdapter.RecyclerViewClickListener clickListener = new PostRecycleViewAdapter.RecyclerViewClickListener() {
                     @Override
                     public void onClick(View view, int position) {
                         final PostRecycleViewAdapter.PostViewHolder holder = (PostRecycleViewAdapter.PostViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
@@ -109,8 +104,9 @@ public class WallFragment extends Fragment {
                         });
                     }
                 };
-
-                adapter.notifyDataSetChanged();
+                adapter = new PostRecycleViewAdapter(getContext(), posts, clickListener);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(adapter);
             }
         }else {
             System.out.println("Posts empty");
@@ -119,12 +115,12 @@ public class WallFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_refresh);
-        if(item!=null)
-            item.setVisible(true);
-    }
+//    @Override
+//    public void onPrepareOptionsMenu(Menu menu) {
+//        MenuItem item=menu.findItem(R.id.action_refresh);
+//        if(item!=null)
+//            item.setVisible(true);
+//    }
 
     public void setPosts(ArrayList<Post> posts){
         this.posts = posts;
