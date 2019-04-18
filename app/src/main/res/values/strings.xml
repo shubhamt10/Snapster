@@ -37,5 +37,7 @@
     <string name="follow">Follow</string>
     <string name="unfollow">Unfollow</string>
     <string name="update">Update Profile</string>
+    <string name="searchForUsers">Search for Users</string>
+    <string name="noPosts">No posts yet</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

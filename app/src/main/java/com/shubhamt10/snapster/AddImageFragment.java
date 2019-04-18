@@ -181,7 +181,7 @@ public class AddImageFragment extends Fragment {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
             System.out.println("Photo received");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
             byteArray = stream.toByteArray();
             uploadImageView.setImageBitmap(bitmap);
         } catch (IOException e) {

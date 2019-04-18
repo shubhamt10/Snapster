@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/uploadplaceholder" />
+            android:src="@drawable/upload" />
 
         <TextView
             android:id="@+id/profileText"
@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/profilePicture"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginBottom="20dp"
             android:layout_below="@id/profileImage"/>
@@ -84,9 +85,11 @@
         <Button
             android:onClick="completeSignup"
             android:id="@+id/completeSignup"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="@string/CompleteSignup"
+            android:textColor="#ffffff"
+            android:background="@drawable/buttonback"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/bioEditText"
             android:layout_marginTop="20dp" />

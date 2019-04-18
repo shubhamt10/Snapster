@@ -38,6 +38,8 @@ public class UserFragment extends Fragment {
     private TextView followingTextView;
     private RecyclerView gridRecyclerView;
     private Button followButton;
+    private TextView noPosts;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
     private CollectionReference usersReference;
@@ -62,6 +64,7 @@ public class UserFragment extends Fragment {
         followingTextView = view.findViewById(R.id.following);
         gridRecyclerView = view.findViewById(R.id.gridRecyclerView);
         followButton = view.findViewById(R.id.followButton);
+        noPosts = view.findViewById(R.id.noPostsYetUser);
 
         for (String uid: user.getFollowers()){
             if (uid.equals(firebaseAuth.getCurrentUser().getUid())){
@@ -97,6 +100,7 @@ public class UserFragment extends Fragment {
         }
 
         if (!user.getPostUrls().isEmpty()) {
+            noPosts.setVisibility(View.GONE);
             GridRecycleViewAdapter.GridRecyclerViewClickListener gridRecyclerViewClickListener = new GridRecycleViewAdapter.GridRecyclerViewClickListener() {
                 @Override
                 public void onClick(View view, int position) {

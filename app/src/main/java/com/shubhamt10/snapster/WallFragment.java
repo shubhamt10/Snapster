@@ -64,9 +64,7 @@ public class WallFragment extends Fragment {
                                 reference = postsReference.document(document.getId());
                                 isLiked = post.getLikes().contains(uid);
                                 if (isLiked) {
-                                    holder.likeButton.setBackgroundColor(Color.GRAY);
-                                    holder.likeButton.setText(R.string.like);
-                                    holder.likeButton.setTextColor(Color.WHITE);
+                                    holder.likeButton.setBackgroundResource(R.drawable.ic_like_button);
                                     reference.update("likes", FieldValue.arrayRemove(uid))
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
@@ -81,9 +79,7 @@ public class WallFragment extends Fragment {
                                         }
                                     });
                                 } else {
-                                    holder.likeButton.setBackgroundColor(Color.RED);
-                                    holder.likeButton.setText(R.string.unlike);
-                                    holder.likeButton.setTextColor(Color.WHITE);
+                                    holder.likeButton.setBackgroundResource(R.drawable.ic_unlike_button);
                                     reference.update("likes", FieldValue.arrayUnion(uid))
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override

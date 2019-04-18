@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.graphics.drawable.DrawableWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,23 +81,18 @@ public class PostFragment extends Fragment {
 
         isLiked = post.getLikes().contains(uid);
         if (isLiked){
-            postLikeButton.setBackgroundColor(Color.RED);
-            postLikeButton.setText(R.string.unlike);
-            postLikeButton.setTextColor(Color.WHITE);
+            postLikeButton.setBackgroundResource(R.drawable.ic_unlike_button);
         }
 
         postLikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!isLiked){
-                    postLikeButton.setBackgroundColor(Color.RED);
-                    postLikeButton.setText(R.string.unlike);
-                    postLikeButton.setTextColor(Color.WHITE);
+                    postLikeButton.setBackgroundResource(R.drawable.ic_like_button);
                     reference.update("likes", FieldValue.arrayUnion(uid))
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    System.out.println("liked");
                                     postLikes.setText(String.valueOf(post.getLikes().size()+1));
                                     isLiked = true;
                                 }
@@ -107,14 +103,11 @@ public class PostFragment extends Fragment {
                                 }
                     });
                 }else {
-                    postLikeButton.setBackgroundColor(Color.GRAY);
-                    postLikeButton.setText(R.string.like);
-                    postLikeButton.setTextColor(Color.WHITE);
+                    postLikeButton.setBackgroundResource(R.drawable.ic_unlike_button);
                     reference.update("likes", FieldValue.arrayUnion(uid))
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    System.out.println("liked");
                                     postLikes.setText(String.valueOf(post.getLikes().size()-1));
                                     isLiked = false;
                                 }
@@ -130,6 +123,8 @@ public class PostFragment extends Fragment {
 
         return view;
     }
+
+
 
     public void setPost(Post post){
         this.post = post;

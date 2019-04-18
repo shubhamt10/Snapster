@@ -1,6 +1,5 @@
 package com.shubhamt10.snapster;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,10 +11,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.algolia.search.saas.AlgoliaException;
 import com.algolia.search.saas.Client;
@@ -28,19 +25,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchFragment extends Fragment {
 
     private EditText searchText;
     private RecyclerView searchRecyclerView;
+    private TextView searchTextView;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
@@ -57,6 +53,7 @@ public class SearchFragment extends Fragment {
 
         searchText = view.findViewById(R.id.searchEditText);
         searchRecyclerView = view.findViewById(R.id.searchRecyclerView);
+        searchTextView = view.findViewById(R.id.searchForUsers);
 
         Client client = new Client("2V160HLXTY", "80f5e050be3d544f1ae19151a4c4945c");
         final Index index = client.getIndex("users");
@@ -74,6 +71,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                searchTextView.setVisibility(View.GONE);
                 Query query = new Query(editable.toString())
                         .setAttributesToRetrieve("name", "username")
                         .setHitsPerPage(20);

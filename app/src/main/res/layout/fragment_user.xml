@@ -79,10 +79,10 @@
             <Button
                 android:id="@+id/followButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:text="@string/follow"
                 android:textColor="#ffffff"
-                android:background="#AB47BC"/>
+                android:background="@drawable/buttonback"/>
 
         </LinearLayout>
 
@@ -91,8 +91,8 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#616161"
+        android:layout_height="1dp"
+        android:background="#F5F5F5"
         android:layout_below="@id/horizontal_profile"/>
 
     <TextView
@@ -122,8 +122,17 @@
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#616161"
+        android:background="#EEEEEE"
         android:layout_below="@id/bioTextView"/>
+
+    <TextView
+        android:id="@+id/noPostsYetUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="@string/noPosts"/>
 
     <ScrollView
         android:layout_width="match_parent"

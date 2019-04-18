@@ -57,9 +57,7 @@ public class PostRecycleViewAdapter extends RecyclerView.Adapter<PostRecycleView
 
 
         if (post.getLikes().contains(firebaseAuth.getCurrentUser().getUid())){
-                postViewHolder.likeButton.setBackgroundColor(Color.RED);
-                postViewHolder.likeButton.setText(R.string.unlike);
-                postViewHolder.likeButton.setTextColor(Color.WHITE);
+                postViewHolder.likeButton.setBackgroundResource(R.drawable.ic_unlike_button);
         }
 
     }

@@ -12,7 +12,8 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <View
         android:layout_width="match_parent"
@@ -38,13 +39,13 @@
 
     <Button
         android:id="@+id/postLikeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/like"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/postImage"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/ic_like_button"/>
 
     <TextView
         android:id="@+id/postLikes"
@@ -78,7 +79,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#616161"
+        android:background="#F5F5F5"
         android:layout_below="@id/postCptn"/>
 
 

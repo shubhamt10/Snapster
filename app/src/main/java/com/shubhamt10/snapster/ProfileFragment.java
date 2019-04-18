@@ -31,6 +31,7 @@ public class ProfileFragment extends Fragment {
     private TextView followingTextView;
     private RecyclerView gridRecyclerView;
     private Button editProfileButton;
+    private TextView noPosts;
 
     private FirebaseFirestore firestore;
     private CollectionReference postsReference;
@@ -51,6 +52,7 @@ public class ProfileFragment extends Fragment {
         followingTextView = view.findViewById(R.id.following);
         gridRecyclerView = view.findViewById(R.id.gridRecyclerView);
         editProfileButton = view.findViewById(R.id.editProfileButton);
+        noPosts = view.findViewById(R.id.noPostsYet);
 
         Glide.with(displayPicture.getContext())
                 .asBitmap()
@@ -78,6 +80,7 @@ public class ProfileFragment extends Fragment {
         }
 
         if (!user.getPostUrls().isEmpty()) {
+            noPosts.setVisibility(View.GONE);
             GridRecycleViewAdapter.GridRecyclerViewClickListener gridRecyclerViewClickListener = new GridRecycleViewAdapter.GridRecyclerViewClickListener() {
                 @Override
                 public void onClick(View view, int position) {

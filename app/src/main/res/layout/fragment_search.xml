@@ -9,14 +9,23 @@
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:hint="@string/title_search"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_below="@id/searchEditText"
-        android:background="#000000"/>
+        android:background="#9E9E9E"/>
+
+    <TextView
+        android:id="@+id/searchForUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="@string/searchForUsers"/>
 
 
     <ScrollView
