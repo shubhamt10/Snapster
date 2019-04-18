@@ -52,6 +52,12 @@ public class UserFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_user,container,false);
 
+        try {
+            ((HomeActivity) getActivity()).getSupportActionBar().setTitle(user.getUsername());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         usersReference = firestore.collection("users");
