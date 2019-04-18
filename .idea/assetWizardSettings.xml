@@ -34,7 +34,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_thumb_up_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_refresh_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -55,9 +55,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_unlike_button" />
+                                      <entry key="outputName" value="ic_refresh_button" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="e00c18" />
+                                      <entry key="themeColor" value="0d0d0d" />
                                     </map>
                                   </option>
                                 </PersistentState>

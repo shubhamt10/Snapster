@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 
 public class WallFragment extends Fragment {
 
-    private ArrayList<Post> posts;
+    private ArrayList<Post> posts = new ArrayList<>();
     private RecyclerView recyclerView;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
@@ -33,16 +36,24 @@ public class WallFragment extends Fragment {
     private DocumentReference reference;
     private Post post;
     private boolean isLiked;
+    private PostRecycleViewAdapter.RecyclerViewClickListener clickListener;
+    private PostRecycleViewAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
 
         View view = inflater.inflate(R.layout.fragment_wall,container,false);
         recyclerView = view.findViewById(R.id.wallRecycleView);
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         postsReference = firestore.collection("posts");
+
+        adapter = new PostRecycleViewAdapter(getContext(), posts, clickListener);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
 
         final String uid = firebaseAuth.getCurrentUser().getUid();
 
@@ -52,7 +63,7 @@ public class WallFragment extends Fragment {
                 for (Post post: posts){
                     postUrls.add(post.getUrl());
                 }
-                PostRecycleViewAdapter.RecyclerViewClickListener clickListener = new PostRecycleViewAdapter.RecyclerViewClickListener() {
+                clickListener = new PostRecycleViewAdapter.RecyclerViewClickListener() {
                     @Override
                     public void onClick(View view, int position) {
                         final PostRecycleViewAdapter.PostViewHolder holder = (PostRecycleViewAdapter.PostViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
@@ -98,15 +109,21 @@ public class WallFragment extends Fragment {
                         });
                     }
                 };
-                PostRecycleViewAdapter adapter = new PostRecycleViewAdapter(getContext(), posts, clickListener);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                recyclerView.setAdapter(adapter);
+
+                adapter.notifyDataSetChanged();
             }
         }else {
             System.out.println("Posts empty");
         }
 
         return view;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_refresh);
+        if(item!=null)
+            item.setVisible(true);
     }
 
     public void setPosts(ArrayList<Post> posts){

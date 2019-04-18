@@ -2,6 +2,7 @@ package com.shubhamt10.snapster;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -73,7 +74,6 @@ public class HomeActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(currentUser.getUsername());
                     break;
             }
-
             return loadFragment(fragment);
         }
 
@@ -129,9 +129,8 @@ public class HomeActivity extends AppCompatActivity {
                             }
 
                             WallFragment wallFragment = new WallFragment();
-                            wallFragment.setPosts(posts);
                             loadFragment(wallFragment);
-
+                            wallFragment.setPosts(posts);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -202,6 +201,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(mainIntent);
                 finish();
                 return true;
+//            case R.id.action_refresh:
+//                loadFragment(new LoadingFragment());
+//                updatePosts();
+//                WallFragment fragment = new WallFragment();
+//                fragment.setPosts(posts);
+//                loadFragment(fragment);
+//                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -256,6 +262,7 @@ public class HomeActivity extends AppCompatActivity {
                         System.out.println(e.getMessage());
                     }
                 }
+                System.out.println("Posts updated");
 
             }
         }).addOnFailureListener(new OnFailureListener() {
