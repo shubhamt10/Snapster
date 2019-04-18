@@ -55,7 +55,7 @@ public class SearchFragment extends Fragment {
         searchRecyclerView = view.findViewById(R.id.searchRecyclerView);
         searchTextView = view.findViewById(R.id.searchForUsers);
 
-        Client client = new Client("2V160HLXTY", "80f5e050be3d544f1ae19151a4c4945c");
+        Client client = new Client("##", "##");
         final Index index = client.getIndex("users");
 
         searchText.addTextChangedListener(new TextWatcher() {
